@@ -1,19 +1,8 @@
 "use client";
 
-import { motion, Variants } from 'motion/react';
-import { Award, GraduationCap, Calendar } from 'lucide-react';
+import { motion } from 'motion/react';
 
 export function Certifications() {
-  const container: Variants = {
-    hidden: { opacity: 0 },
-    show: { opacity: 1, transition: { staggerChildren: 0.1 } },
-  };
-
-  const item: Variants = {
-    hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0, transition: { type: "spring" } },
-  };
-
   const certs = [
     { name: "Cisco Certified Network Associate (CCNA)", issuer: "Cisco Networking Academy", year: "2024" },
     { name: "Python Certification", issuer: "HackerRank", year: "Jan 2025" },
@@ -24,35 +13,53 @@ export function Certifications() {
   ];
 
   return (
-    <section id="certifications" className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24">
-      <motion.div initial="hidden" whileInView="show" viewport={{ once: true, margin: "-100px" }} variants={container}>
-        <motion.div variants={item} className="mb-12 flex items-center gap-4">
-          <div className="p-3 bg-primary/20 text-primary rounded-xl">
-            <Award className="h-6 w-6" />
-          </div>
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl text-foreground">Certifications</h2>
-        </motion.div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {certs.map((cert, idx) => (
-            <motion.div key={idx} variants={item} className="relative p-6 rounded-2xl bg-card border border-white/5 hover:border-primary/30 transition-colors shadow-lg">
-              {cert.highlight && (
-                <div className="absolute top-0 right-6 -translate-y-1/2 px-3 py-1 bg-primary text-primary-foreground text-xs font-bold rounded-full shadow-lg">
-                  {cert.highlight}
-                </div>
-              )}
-              <h3 className="font-semibold text-lg text-foreground mb-2 leading-tight pr-4">{cert.name}</h3>
-              <div className="flex items-center justify-between mt-4">
-                <span className="text-sm font-medium text-muted-foreground">{cert.issuer}</span>
-                <span className="text-xs text-muted-foreground px-2 py-1 rounded-md bg-white/5 border border-white/5 flex items-center gap-1">
-                  <Calendar className="h-3 w-3" />
-                  {cert.year}
-                </span>
-              </div>
-            </motion.div>
-          ))}
+    <section id="certifications" className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-32 border-t border-border">
+      <div className="grid md:grid-cols-12 gap-12 md:gap-8">
+        
+        <div className="md:col-span-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+          >
+            <h2 className="text-sm font-bold tracking-widest uppercase text-muted-foreground mb-4">
+              06 // Credentials
+            </h2>
+            <h3 className="text-4xl md:text-5xl font-black text-foreground uppercase tracking-tighter leading-none">
+              Certifications
+            </h3>
+          </motion.div>
         </div>
-      </motion.div>
+
+        <div className="md:col-span-8">
+          <div className="grid sm:grid-cols-2 gap-x-12 gap-y-12">
+            {certs.map((cert, idx) => (
+              <motion.div 
+                key={idx}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5, delay: idx * 0.1, ease: "easeOut" }}
+                className="group relative"
+              >
+                <div className="text-xs font-bold tracking-widest uppercase text-muted-foreground mb-2 flex justify-between">
+                  <span>{cert.issuer}</span>
+                  <span>{cert.year}</span>
+                </div>
+                <h4 className="text-xl font-bold text-foreground leading-tight">
+                  {cert.name}
+                </h4>
+                {cert.highlight && (
+                  <span className="inline-block mt-3 text-xs font-bold uppercase tracking-widest text-primary">
+                    [{cert.highlight} Achieved]
+                  </span>
+                )}
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </div>
     </section>
   );
 }
