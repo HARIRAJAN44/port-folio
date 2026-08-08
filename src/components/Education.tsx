@@ -1,38 +1,74 @@
+"use client";
+
+import { motion } from 'motion/react';
+import { GraduationCap } from 'lucide-react';
+
 export function Education() {
   return (
-    <section id="education" className="bg-muted/10 border-y border-border py-16 md:py-24">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-12">Education</h2>
-        
-        <div className="space-y-12 max-w-4xl">
-          <div className="relative border-l border-border ml-3 pl-8">
-            <div className="absolute w-3 h-3 bg-primary rounded-full -left-[1.35rem] top-2 ring-4 ring-background" />
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-2 gap-2">
-              <h3 className="text-xl font-semibold">IFET College of Engineering</h3>
-              <span className="text-sm font-medium px-3 py-1 rounded-full bg-muted text-muted-foreground w-fit">
-                2023–2027
-              </span>
+    <section id="education" className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-24">
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        className="text-center mb-16"
+      >
+        <h2 className="text-3xl font-bold tracking-tight sm:text-4xl text-foreground">Education</h2>
+      </motion.div>
+      
+      <div className="space-y-8">
+        <motion.div 
+          initial={{ opacity: 0, x: -20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          className="relative pl-8 md:pl-0"
+        >
+          <div className="md:grid md:grid-cols-5 md:gap-8 items-center bg-card border border-white/5 rounded-3xl p-6 md:p-8 hover:border-primary/30 transition-colors shadow-xl">
+            <div className="hidden md:block col-span-1 text-center">
+              <div className="inline-flex items-center justify-center h-16 w-16 rounded-full bg-primary/10 text-primary mb-2">
+                <GraduationCap className="h-8 w-8" />
+              </div>
+              <div className="text-sm font-bold text-muted-foreground">2023–2027</div>
             </div>
-            <div className="text-lg text-foreground mb-3">Bachelor of Engineering — Computer Science and Engineering</div>
-            <div className="inline-flex items-center rounded-md border border-border bg-card px-3 py-1 text-sm font-medium">
-              CGPA: <span className="ml-1 text-primary">8.6</span>
+            
+            <div className="md:col-span-4 relative">
+              <div className="md:hidden absolute -left-12 top-1 bottom-0 w-px bg-white/10" />
+              <div className="md:hidden absolute -left-[51px] top-2 h-3 w-3 rounded-full bg-primary ring-4 ring-background" />
+              
+              <div className="md:hidden text-sm font-bold text-primary mb-2">2023–2027</div>
+              <h3 className="text-xl md:text-2xl font-bold text-foreground mb-1">IFET College of Engineering</h3>
+              <p className="text-lg text-muted-foreground mb-4">Bachelor of Engineering — Computer Science & Engineering</p>
+              <div className="inline-block px-4 py-1.5 rounded-lg bg-white/5 border border-white/10 text-sm font-medium">
+                CGPA: <span className="text-primary font-bold ml-1">8.6</span>
+              </div>
             </div>
           </div>
+        </motion.div>
 
-          <div className="relative border-l border-border ml-3 pl-8">
-            <div className="absolute w-3 h-3 bg-muted-foreground rounded-full -left-[1.35rem] top-2 ring-4 ring-background" />
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-2 gap-2">
-              <h3 className="text-xl font-semibold">St. Joseph's Higher Secondary School, Cuddalore</h3>
-              <span className="text-sm font-medium px-3 py-1 rounded-full bg-muted text-muted-foreground w-fit">
-                2021–2023
-              </span>
+        <motion.div 
+          initial={{ opacity: 0, x: -20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.1 }}
+          className="relative pl-8 md:pl-0"
+        >
+          <div className="md:grid md:grid-cols-5 md:gap-8 items-center bg-card border border-white/5 rounded-3xl p-6 md:p-8 hover:border-primary/30 transition-colors shadow-xl opacity-80">
+            <div className="hidden md:block col-span-1 text-center">
+              <div className="text-sm font-bold text-muted-foreground">2021–2023</div>
             </div>
-            <div className="text-lg text-foreground mb-3">Higher Secondary Certificate (HSC)</div>
-            <div className="inline-flex items-center rounded-md border border-border bg-card px-3 py-1 text-sm font-medium">
-              Percentage: <span className="ml-1 text-primary">83%</span>
+            
+            <div className="md:col-span-4 relative">
+              <div className="md:hidden absolute -left-12 top-1 bottom-0 w-px bg-white/10" />
+              <div className="md:hidden absolute -left-[51px] top-2 h-3 w-3 rounded-full bg-white/20 ring-4 ring-background" />
+              
+              <div className="md:hidden text-sm font-bold text-muted-foreground mb-2">2021–2023</div>
+              <h3 className="text-lg md:text-xl font-bold text-foreground mb-1">St. Joseph's Higher Secondary School</h3>
+              <p className="text-base text-muted-foreground mb-4">Higher Secondary Certificate (HSC)</p>
+              <div className="inline-block px-4 py-1.5 rounded-lg bg-white/5 border border-white/10 text-sm font-medium">
+                Percentage: <span className="text-foreground font-bold ml-1">83%</span>
+              </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
